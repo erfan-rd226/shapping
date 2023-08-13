@@ -11,7 +11,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title','is_enable','created_time']
+    list_display = ['title','is_enable','created_time',]
     list_filter = ['is_enable']
     filter_horizontal = ['categories']
     search_fields = ['title']
