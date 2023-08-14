@@ -20,7 +20,7 @@ class Category(models.Model):
 class Product(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(blank=True)
-    categories = models.ManyToManyField('Category')
+    categories = models.ForeignKey('Category', related_name='product',on_delete=models.CASCADE)
     is_enable = models.BooleanField()
     created_time = models.DateTimeField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now_add=True)
