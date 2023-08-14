@@ -8,7 +8,7 @@ class CategorySerializer(serializers.ModelSerializer):
         # ['id','title','description','is_enable']
 
 
-class ProductSerializer(serializers.HyperlinkedModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
     categories = CategorySerializer()
 
     class Meta:

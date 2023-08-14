@@ -4,15 +4,18 @@ from rest_framework.decorators import api_view
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework import status
+from home.serializers import CategorySerializer ,ProductSerializer
+
 
 @api_view(['GET'])
 def CategoriesVeiws(request:Request):
-    category = list(Category.objects.all())
-    return Response({'categoy':category}, status.HTTP_200_OK)
-
+    category = Category.objects.all()
+    serializer = CategorySerializer(category, many=True)
+    return Response(serializer.data, status.HTTP_200_OK)
 
 
 @api_view(['GET'])
 def productsVeiws(request:Request):
-    product = list(Product.objects.all())
-    return Response({'product':product}, status.HTTP_200_OK)
+    product = Product.objects.all()
+    serializer = ProductSerializer(product, many=True)
+    return Response(serializer.data, status.HTTP_200_OK)
