@@ -26,3 +26,4 @@ class ProductViewSetApi(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     pagination_class = paginationshop
+    
