@@ -20,7 +20,7 @@ class CategoryViewSetApi(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
     pagination_class = paginationshop
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['title', 'is_enable']
+    filterset_fields = ['title','is_enable']
 
 
 class ProductViewSetApi(viewsets.ModelViewSet):
@@ -30,5 +30,5 @@ class ProductViewSetApi(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
     pagination_class = paginationshop
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['categories', 'is_enable']
+    filterset_fields = ['categories','title']   
     
