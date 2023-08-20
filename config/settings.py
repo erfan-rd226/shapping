@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'home',
     'index',
     'django_filters',
+    'drf_yasg2',
 ]
 
 MIDDLEWARE = [
