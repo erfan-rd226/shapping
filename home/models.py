@@ -1,6 +1,7 @@
 from typing import Any
 from django.db import models
-
+from django.contrib.auth.models import User
+from django.utils.crypto import get_random_string
 
 class Category(models.Model):
     title = models.CharField(max_length=50)
