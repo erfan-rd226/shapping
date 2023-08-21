@@ -18,7 +18,7 @@ class CategoriesGenerics(generics.ListAPIView):
     @method_decorator(cache_page(60))
     def get(self, *args, **kwargs):
         return super().get(*args, **kwargs)
-
+    
 
 class ProductsGenerics(generics.ListAPIView):
     queryset = Product.objects.all()
@@ -30,5 +30,4 @@ class ProductsGenerics(generics.ListAPIView):
     @method_decorator(cache_page(60))
     def get(self, *args, **kwargs):
         return super().get(*args, **kwargs)
-
-    
+       

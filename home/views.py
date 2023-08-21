@@ -15,7 +15,7 @@ class paginationshop(PageNumberPagination):
 
 class CategoryViewSetApi(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     pagination_class = paginationshop
@@ -25,10 +25,10 @@ class CategoryViewSetApi(viewsets.ModelViewSet):
 
 class ProductViewSetApi(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     pagination_class = paginationshop
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['categories','title']   
+    filterset_fields = ['categories','title']
     
