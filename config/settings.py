@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from decouple import config
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(@9pmp%7&4%^g_3b)5b_05stl*^@!gan(flzxr7&=jvz=1l7nl'
+SECRET_KEY =config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,11 +42,13 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework_simplejwt',
     'rest_framework',
-    'rest_framework_swagger',
-    'home',
-    'index',
+    'rest_framework_swagger', 
+    # "rest_framework_api_key",
     'django_filters',
     'cachalot',
+    'home',
+    'index',
+    'apikey',
 ]
 
 MIDDLEWARE = [
@@ -84,12 +87,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {     
    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('NAME'),
-        'USER': config('USER'),
-        'PASSWORD': config('PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',
     }
 }
 
@@ -138,13 +137,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-
     ),
-    
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ]
+    
 }
 
 PAGINATION_PAGE_SIZE = config('PAGINATION_PAGE_SIZE')
@@ -162,3 +163,8 @@ CACHES = {
 
 
 CACHALOT_TIMEOUT = (60)
+
+
+SIMPLE_API_KEY = {
+    "FERNET_SECRET":config("FERNET_SECRET"),
+}
