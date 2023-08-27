@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Iterable, Optional
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.crypto import get_random_string
@@ -16,7 +16,6 @@ class Category(models.Model):
     class Meta:
         db_table = 'categorys'
 
-    
 
 class Product(models.Model):
     title = models.CharField(max_length=50)

@@ -43,11 +43,12 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rest_framework',
     'rest_framework_swagger', 
-    "rest_framework_simple_api_key",
-    'home',
-    'index',
+    # "rest_framework_api_key",
     'django_filters',
     'cachalot',
+    'home',
+    'index',
+    'apikey',
 ]
 
 MIDDLEWARE = [
@@ -86,12 +87,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {     
    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('NAME'),
-        'USER': config('USER'),
-        'PASSWORD': config('PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',
     }
 }
 
@@ -140,14 +137,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-
     ),
-    
+
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 
-
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ]
+    
 }
 
 PAGINATION_PAGE_SIZE = config('PAGINATION_PAGE_SIZE')
