@@ -8,6 +8,7 @@ from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_MET
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import serializers
+from rest_framework.renderers import JSONRenderer
 
 from .models import ApiKey
 from apikey import serializers
@@ -19,6 +20,7 @@ class ReadOnly(BasePermission):
 
 
 class ApiKeyView(APIView):
+    permission_classes = [IsAuthenticated, IsAdminUser]
     def post(self, request):
         serializer = serializers.ApiKeySerializer(data=request.data)
         

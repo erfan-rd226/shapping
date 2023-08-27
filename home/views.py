@@ -9,6 +9,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.pagination import PageNumberPagination
 
 from .models import Category,Product
+from .authentication import SafeJWTAuthentication
 from .serializers import CategorySerializer,ProductSerializer
 
 
@@ -17,7 +18,7 @@ class PaginationShop(PageNumberPagination):
 
 
 class CategoryViewSetApi(viewsets.ModelViewSet):
-    authentication_classes = [JWTAuthentication]
+    authentication_classes = [SafeJWTAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
@@ -27,7 +28,7 @@ class CategoryViewSetApi(viewsets.ModelViewSet):
 
 
 class ProductViewSetApi(viewsets.ModelViewSet):
-    authentication_classes = [JWTAuthentication]
+    authentication_classes = [SafeJWTAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Product.objects.all()
     serializer_class = ProductSerializer

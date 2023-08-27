@@ -16,11 +16,12 @@ class ApiKeySerializer(serializers.ModelSerializer):
         }
 
     def generate_token(self, validated_data:dict):
-        user = validated_data.get("User")
+        user = validated_data.get("user")
+        expire_time = validated_data.get("expire_time")
         payload = {
             "type": "api_key",
-            "user_id": user,
-            "exp":"2022-12-31T23:59:59Z",
+            "user_id": user.id,
+            "exp":expire_time,
         }
 
         token = jwt.encode(payload=payload, key=settings.SECRET_KEY, algorithm="HS256")
