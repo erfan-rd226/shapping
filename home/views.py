@@ -10,35 +10,11 @@ from .models import Category,Product
 from .serializers import CategorySerializer,ProductSerializer
 
 
-# class paginationshop(PageNumberPagination):
-#     page_size = settings.PAGINATION_PAGE_SIZE
-
-
-# class CategoryViewSetApi(generics.ListAPIView):
-#     permission_classes = [IsAuthenticated]
-#     queryset = Category.objects.all()
-#     serializer_class = CategorySerializer
-#     pagination_class = paginationshop
-#     filter_backends = [DjangoFilterBackend]
-#     filterset_fields = ['title','is_enable']
-
-
-# class ProductViewSetApi(generics.ListAPIView):
-#     permission_classes = [IsAuthenticated]
-#     queryset = Product.objects.all()
-#     serializer_class = ProductSerializer
-#     pagination_class = paginationshop
-#     filter_backends = [DjangoFilterBackend]
-#     filterset_fields = ['categories','title']
-    
-
-    
 class paginationshop(PageNumberPagination):
     page_size = settings.PAGINATION_PAGE_SIZE
 
 
-class CategoryViewSetApi(viewsets.ModelViewSet):
-    authentication_classes = [JWTAuthentication]
+class CategoryViewSetApi(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
@@ -47,12 +23,11 @@ class CategoryViewSetApi(viewsets.ModelViewSet):
     filterset_fields = ['title','is_enable']
 
 
-class ProductViewSetApi(viewsets.ModelViewSet):
-    authentication_classes = [JWTAuthentication]
+class ProductViewSetApi(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     pagination_class = paginationshop
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['categories','title']   
+    filterset_fields = ['categories','title']
     
