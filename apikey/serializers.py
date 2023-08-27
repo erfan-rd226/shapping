@@ -11,9 +11,9 @@ class ApiKeySerializer(serializers.ModelSerializer):
     class Meta:
         model = ApiKey
         fields = '__all__'
-        # extera_kwargs = {
-        #     "token": "read_only"
-        # }
+        extera_kwargs = {
+            "token": "read_only"
+        }
 
     def generate_token(self, validated_data:dict):
         user = validated_data.get("User")
