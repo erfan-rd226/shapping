@@ -31,12 +31,14 @@ class ApiKeySerializer(serializers.ModelSerializer):
         user = attrs.get("user")
         expire_time = attrs.get("expire_time")
         is_active = attrs.get("is_active")
+        roll = attrs.get("roll")
         token = self.generate_token(attrs)
 
         ApiKey.objects.create(
             user=user,
             expire_time=expire_time,
             is_active=is_active,
+            roll = roll,
             token=token
         )
 
