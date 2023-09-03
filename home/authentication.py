@@ -16,13 +16,13 @@ class SafeJWTAuthentication(BaseAuthentication):
     def authenticate(self, request):
 
         User = get_user_model()
-        authorization_heaader = request.headers.get('Authorization')
+        authorization_header = request.headers.get('Authorization')
 
-        if not authorization_heaader:
+        if not authorization_header:
             return None
         try:
             # header = 'Token xxxxxxxxxxxxxxxxxxxxxxxx'
-            token = authorization_heaader.split(' ')[1]
+            token = authorization_header.split(' ')[1]
             payload = jwt.decode(
                 token, settings.SECRET_KEY, algorithms=['HS256'])
 
@@ -30,7 +30,6 @@ class SafeJWTAuthentication(BaseAuthentication):
             raise exceptions.AuthenticationFailed('access_token expired')
         except IndexError:
             raise exceptions.AuthenticationFailed('Token prefix missing')
-        print(payload)
         user = User.objects.filter(id=payload['user_id']).first()
         if user is None:
             raise exceptions.AuthenticationFailed('User not found')

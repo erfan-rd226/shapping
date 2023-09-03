@@ -136,15 +136,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 REST_FRAMEWORK = {
-    # 'DEFAULT_AUTHENTICATION_CLASSES': (
-    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
-    # ),
 
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.IsAuthenticated',
-    # ]
+    'DEFAULT_THROTTLE_CLASSES': [
+        'apikey.throttling.ExceptionalUserRateThrottle',
+    ],
     
 }
 
@@ -163,8 +159,3 @@ CACHES = {
 
 
 CACHALOT_TIMEOUT = (60)
-
-
-SIMPLE_API_KEY = {
-    "FERNET_SECRET":config("FERNET_SECRET"),
-}
