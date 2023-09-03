@@ -13,6 +13,7 @@ class ApiKey(models.Model):
     expire_time = models.DateTimeField()
     created = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
+    roll = models.CharField(max_length=50)
     token = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
@@ -24,5 +25,6 @@ class ApiKey(models.Model):
 # {
 #     "user": 1,
 #     "expire_time": "2024-01-01",
-#     "is_active": true
+#     "is_active": true,
+#     "roll":"5/1/min"
 # }
